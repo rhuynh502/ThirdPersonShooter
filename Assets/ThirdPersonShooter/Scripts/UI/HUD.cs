@@ -22,15 +22,19 @@ namespace ThirdPersonShooter.UI
 			
 			player.Stats.onHealthChanged += OnHealthChanged;
 			player.Stats.onDeath += OnPlayerDied;
+			player.onScoreUpdated += OnScoreUpdated;
 
 			healthBar.maxValue = player.Stats.MaxHealth;
 			healthBar.value = player.Stats.Health;
+
+			scoreText.text = "Score: 0";
 		}
 
 		public override void OnCloseMenu(UIManager _manager)
 		{
 			player.Stats.onHealthChanged -= OnHealthChanged;
 			player.Stats.onDeath -= OnPlayerDied;
+			player.onScoreUpdated -= OnScoreUpdated;
 		}
 
 		private void OnHealthChanged(float _health)
@@ -41,6 +45,11 @@ namespace ThirdPersonShooter.UI
 		private void OnPlayerDied()
 		{
 			UIManager.ShowMenu("Game Over");
+		}
+
+		private void OnScoreUpdated(int _score)
+		{
+			scoreText.text = $"Score: {_score}";
 		}
 	}
 }

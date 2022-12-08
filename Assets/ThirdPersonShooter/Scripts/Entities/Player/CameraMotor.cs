@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections;
 
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 namespace ThirdPersonShooter.Entities.Player
 {
@@ -14,11 +16,15 @@ namespace ThirdPersonShooter.Entities.Player
 		[Header("Components")] 
 		[SerializeField] private InputActionReference lookActionReference;
 		[SerializeField] private new Camera camera;
+		[SerializeField, Range(0, 1)] private float alignmentDamping = 1f;
 
 		[Header("Collision")] 
 		[SerializeField] private float collisionRadius = 0.5f;
 		[SerializeField] private float distance = 3f;
+		[SerializeField] private Transform render;
 		[SerializeField] private LayerMask collisionLayers;
+		
+		private Vector3 dampingVelocity;
 
 		private void OnValidate()
 		{
@@ -76,11 +82,15 @@ namespace ThirdPersonShooter.Entities.Player
 			if(!GameManager.IsValid())
 			{
 				transform.Rotate(Vector3.up, _context.ReadValue<float>() * sensitivity);
+				render.transform.rotation = transform.rotation;
 				return;
 			}
 			
 			if(!GameManager.Instance.IsPaused)
 				transform.Rotate(Vector3.up, _context.ReadValue<float>() * sensitivity);
+			render.forward = Vector3.SmoothDamp(render.forward, transform.forward, ref dampingVelocity, alignmentDamping);
+			render.transform.rotation = transform.rotation;
 		}
+
 	}
 }

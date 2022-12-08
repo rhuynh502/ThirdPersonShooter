@@ -263,10 +263,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbd919772880475facf7e326d19ca58b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alignmentDamping: 0.778
   moveActionReference: {fileID: 1641431544362889017, guid: 4da71f3610e82af469d88b6dd53419e8, type: 3}
   camera: {fileID: 4948095348573837494}
-  render: {fileID: 5311940843843149190}
   animator: {fileID: 5311940843852935734}
 --- !u!1 &5311940843843567680
 GameObject:
@@ -2947,8 +2945,10 @@ MonoBehaviour:
   sensitivity: 1
   lookActionReference: {fileID: -8235772208288002430, guid: 4da71f3610e82af469d88b6dd53419e8, type: 3}
   camera: {fileID: 4058457174896714454}
+  alignmentDamping: 1
   collisionRadius: 0.5
   distance: 2.5
+  render: {fileID: 5311940843843149190}
   collisionLayers:
     serializedVersion: 2
     m_Bits: 128
