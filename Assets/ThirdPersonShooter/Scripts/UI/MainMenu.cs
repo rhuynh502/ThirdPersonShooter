@@ -9,6 +9,10 @@ namespace ThirdPersonShooter.UI
 		public override void OnOpenMenu(UIManager _manager)
 		{
 			_manager.SetAudioListenerState(true);
+			if(GameManager.Instance.IsPaused)
+				GameManager.Instance.TogglePaused();
+			Cursor.visible = true;
+			Cursor.lockState = CursorLockMode.None;
 		}
 
 		public override void OnCloseMenu(UIManager _manager)

@@ -60,11 +60,14 @@ namespace ThirdPersonShooter.UI
 					menuDictionary[id].SetVisible(false);
 					activeMenus.RemoveAt(0);
 				}
+				Cursor.visible = true;
+				Cursor.lockState = CursorLockMode.None;
 			}
 			
 			menuDictionary[_id].SetVisible(true);
 			menuDictionary[_id].OnOpenMenu(this);
 			activeMenus.Add(_id);
+			
 		}
 
 		private void DeactivateMenu(string _id)
